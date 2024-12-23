@@ -1,5 +1,6 @@
 import eslintPluginJsonc from "eslint-plugin-jsonc";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+import eslintPluginPromise from "eslint-plugin-promise";
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
 import globals from "globals";
 import jsoncESlintParser from "jsonc-eslint-parser";
@@ -18,6 +19,26 @@ export default [
   {
     ...eslintPluginPrettier,
     files: patternJsFiles
+  },
+  {
+    ...eslintPluginPromise.configs["flat/recommended"],
+    files: patternJsFiles,
+    rules: {
+      ...eslintPluginPromise.configs["flat/recommended"].rules,
+      "promise/always-return": [
+        "error",
+        {
+          ignoreLastCallback: true
+        }
+      ],
+      "promise/no-callback-in-promise": "error",
+      "promise/no-multiple-resolved": "error",
+      "promise/no-nesting": "error",
+      "promise/no-promise-in-callback": "error",
+      "promise/no-return-in-finally": "error",
+      "promise/spec-only": "error",
+      "promise/valid-params": "error"
+    }
   },
   {
     files: patternJsFiles,
