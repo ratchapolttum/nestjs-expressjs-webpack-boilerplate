@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "name": "nestjs-expressjs-webpack-boilerplate",
-  "description": "Boilerplate for NestJS (ExpressJS)",
+  "description": "Boilerplate for NestJS (Express.js)",
   "license": "MIT",
   "author": "ratchapolttum",
   "repository": {
