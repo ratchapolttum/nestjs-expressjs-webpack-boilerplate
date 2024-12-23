@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "name": "nestjs-expressjs-webpack-boilerplate",
+  "description": "Boilerplate for NestJS (ExpressJS)",
+  "license": "MIT",
+  "author": "ratchapolttum",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ratchapolttum/nestjs-expressjs-webpack-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ratchapolttum/nestjs-expressjs-webpack-boilerplate/issues"
+  },
+  "private": true,
+  "engines": {
+    "node": "^18 || ^20"
+  },
+  "keywords": [
+    "Node.js",
+    "NPM",
+    "Boilerplate",
+    "Backend",
+    "Web Service APIs"
+  ]
+}
