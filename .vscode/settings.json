@@ -1,5 +1,5 @@
 {
-  "[json][json5][jsonc][jsonl]": {
+  "[javascript][json][json5][jsonc][jsonl]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "editor.codeActionsOnSave": {
@@ -8,6 +8,7 @@
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
   "eslint.validate": [
+    "javascript",
     "json",
     "json5",
     "jsonc",
