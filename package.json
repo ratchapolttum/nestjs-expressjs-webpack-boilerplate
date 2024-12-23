@@ -11,6 +11,11 @@
   "bugs": {
     "url": "https://github.com/ratchapolttum/nestjs-expressjs-webpack-boilerplate/issues"
   },
+  "devDependencies": {
+    "eslint": "9.17.0",
+    "eslint-plugin-jsonc": "2.18.2",
+    "jsonc-eslint-parser": "2.4.0"
+  },
   "private": true,
   "engines": {
     "node": "^18 || ^20"
