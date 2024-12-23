@@ -1,6 +1,7 @@
+import eslintPluginJsonc from "eslint-plugin-jsonc";
+import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import globals from "globals";
-import jsonc from "eslint-plugin-jsonc";
-import jsoncParser from "jsonc-eslint-parser";
+import jsoncESlintParser from "jsonc-eslint-parser";
 
 /**
  * Configuration for ESLint
@@ -11,12 +12,16 @@ export default [
   {
     ignores: ["**/node_modules/*"]
   },
-  ...jsonc.configs["flat/recommended-with-jsonc"].map((config) => {
+  {
+    ...eslintPluginPrettier,
+    files: ["**/*.cjs", "**/*.js", "**/*.mjs"]
+  },
+  ...eslintPluginJsonc.configs["flat/recommended-with-jsonc"].map((config) => {
     return {
       ...config,
       files: ["**/*.json", "**/*.json5", "**/*.jsonc", "**/*.jsonl"],
       languageOptions: {
-        parser: jsoncParser,
+        parser: jsoncESlintParser,
         parserOptions: {
           jsonSyntax: "JSONC"
         }
@@ -42,6 +47,7 @@ export default [
   {
     languageOptions: {
       globals: {
+        ...globals.es2021,
         ...globals.node
       }
     }
