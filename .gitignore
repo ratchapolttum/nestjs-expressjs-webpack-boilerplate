@@ -1,3 +1,6 @@
+# - Dependencies directories
+node_modules/*
+
 # - Text editor and IDE directories and files
 # -- Visual Studio Code
 .vscode/*
