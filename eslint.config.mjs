@@ -1,7 +1,10 @@
 import eslintPluginJsonc from "eslint-plugin-jsonc";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
 import globals from "globals";
 import jsoncESlintParser from "jsonc-eslint-parser";
+
+const patternJsFiles = ["**/*.cjs", "**/*.js", "**/*.mjs"];
 
 /**
  * Configuration for ESLint
@@ -14,7 +17,25 @@ export default [
   },
   {
     ...eslintPluginPrettier,
-    files: ["**/*.cjs", "**/*.js", "**/*.mjs"]
+    files: patternJsFiles
+  },
+  {
+    files: patternJsFiles,
+    plugins: {
+      "unused-imports": eslintPluginUnusedImports
+    },
+    rules: {
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "error",
+        {
+          args: "after-used",
+          argsIgnorePattern: "^_",
+          vars: "all",
+          varsIgnorePattern: "^_"
+        }
+      ]
+    }
   },
   ...eslintPluginJsonc.configs["flat/recommended-with-jsonc"].map((config) => {
     return {
