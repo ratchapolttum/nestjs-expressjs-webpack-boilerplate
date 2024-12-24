@@ -1,9 +1,9 @@
 name: Linter the code
 on:
   push:
-    branches: ["dev", "main"]
+    branches: [dev, main]
   pull_request:
-    branches: ["main"]
+    branches: [main]
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -11,13 +11,13 @@ jobs:
       matrix:
         node-version: [18.x, 20.x]
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
-      run: npm install
-    - name: Run script
-      run: npm run lint
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm install
+      - name: Run script
+        run: npm run lint
