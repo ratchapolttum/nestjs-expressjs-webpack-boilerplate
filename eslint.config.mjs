@@ -2,8 +2,10 @@ import eslintPluginJsonc from "eslint-plugin-jsonc";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import eslintPluginPromise from "eslint-plugin-promise";
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
+import eslintPluginYml from "eslint-plugin-yml";
 import globals from "globals";
 import jsoncESlintParser from "jsonc-eslint-parser";
+import yamlESlintParser from "yaml-eslint-parser";
 
 const patternJsFiles = ["**/*.cjs", "**/*.js", "**/*.mjs"];
 
@@ -83,6 +85,42 @@ export default [
         "jsonc/object-curly-newline": "error",
         "jsonc/object-curly-spacing": "error",
         "jsonc/object-property-newline": "error"
+      }
+    };
+  }),
+  ...eslintPluginYml.configs["flat/recommended"].map((config) => {
+    return {
+      ...config,
+      files: ["**/*.yml", "**/*.yaml"],
+      languageOptions: {
+        parser: yamlESlintParser,
+        parserOptions: {
+          defaultYAMLVersion: "1.2"
+        }
+      },
+      rules: {
+        ...config.rules,
+        "yml/block-mapping": "error",
+        "yml/block-mapping-question-indicator-newline": "error",
+        "yml/block-sequence-hyphen-indicator-newline": "error",
+        "yml/block-sequence": "error",
+        "yml/file-extension": [
+          "error",
+          {
+            extension: "yml"
+          }
+        ],
+        "yml/flow-mapping-curly-newline": "error",
+        "yml/flow-mapping-curly-spacing": "error",
+        "yml/flow-sequence-bracket-newline": "error",
+        "yml/flow-sequence-bracket-spacing": "error",
+        "yml/indent": "error",
+        "yml/key-spacing": "error",
+        "yml/no-multiple-empty-lines": "error",
+        "yml/no-trailing-zeros": "error",
+        "yml/plain-scalar": "error",
+        "yml/quotes": "error",
+        "yml/spaced-comment": "error"
       }
     };
   }),
