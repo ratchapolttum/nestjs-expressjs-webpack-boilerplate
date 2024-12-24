@@ -7,6 +7,9 @@ import globals from "globals";
 import jsoncESlintParser from "jsonc-eslint-parser";
 import yamlESlintParser from "yaml-eslint-parser";
 
+/**
+ * @type {string[]}
+ */
 const patternJsFiles = ["**/*.cjs", "**/*.js", "**/*.mjs"];
 
 /**
