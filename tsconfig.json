@@ -75,7 +75,7 @@
     "strictPropertyInitialization": false,
     "suppressExcessPropertyErrors": false,
     "suppressImplicitAnyIndexErrors": false,
-    "target": "ES2021",
+    "target": "ES2022",
     "useUnknownInCatchVariables": true,
     "verbatimModuleSyntax": false
   }
