@@ -1,6 +1,9 @@
+import eslintPluginMarkdown from "@eslint/markdown";
+
 import eslintPluginJsonc from "eslint-plugin-jsonc";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import eslintPluginPromise from "eslint-plugin-promise";
+import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
 import eslintPluginYml from "eslint-plugin-yml";
 import globals from "globals";
@@ -22,12 +25,39 @@ export default [
     ignores: ["**/node_modules/*"]
   },
   {
+    languageOptions: {
+      globals: {
+        ...globals.es2022,
+        ...globals.node
+      }
+    }
+  },
+  {
     ...eslintPluginPrettier,
     files: patternJsFiles
   },
   {
-    ...eslintPluginPromise.configs["flat/recommended"],
     files: patternJsFiles,
+    plugins: {
+      unicorn: eslintPluginUnicorn
+    },
+    languageOptions: {
+      globals: {
+        ...globals.builtin
+      }
+    },
+    rules: {
+      ...eslintPluginUnicorn.configs["flat/recommended"].rules,
+      "unicorn/no-null": "off",
+      "unicorn/prefer-module": "off",
+      "unicorn/prevent-abbreviations": "off"
+    }
+  },
+  {
+    files: patternJsFiles,
+    plugins: {
+      promise: eslintPluginPromise
+    },
     rules: {
       ...eslintPluginPromise.configs["flat/recommended"].rules,
       "promise/always-return": [
@@ -128,11 +158,16 @@ export default [
     };
   }),
   {
-    languageOptions: {
-      globals: {
-        ...globals.es2022,
-        ...globals.node
-      }
+    files: ["**/*.md"],
+    plugins: {
+      markdown: eslintPluginMarkdown
+    },
+    processor: "markdown/markdown"
+  },
+  {
+    files: ["**/*.md/*.cjs", "**/*.md/*.js", "**/*.md/*.mjs"],
+    rules: {
+      "unicorn/filename-case": "off"
     }
   }
 ];
