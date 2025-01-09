@@ -1,5 +1,5 @@
 {
-  "[javascript][json][json5][jsonc][jsonl][yaml]": {
+  "[javascript][json][json5][jsonc][jsonl][markdown][yaml]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "editor.codeActionsOnSave": {
@@ -13,6 +13,7 @@
     "json5",
     "jsonc",
     "jsonl",
+    "markdown",
     "yaml"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib"
