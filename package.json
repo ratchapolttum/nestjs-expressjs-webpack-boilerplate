@@ -16,6 +16,9 @@
     "lint:fix": "eslint --fix **/*.{cjs,js,json,json5,jsonc,jsonl,md,mjs,yaml,yml}"
   },
   "devDependencies": {
+    "@eslint/compat": "1.2.4",
+    "@eslint/eslintrc": "3.2.0",
+    "@eslint/js": "9.17.0",
     "@eslint/markdown": "6.2.1",
     "@types/node": "20.17.10",
     "eslint": "9.17.0",
