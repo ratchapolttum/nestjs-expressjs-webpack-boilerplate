@@ -3,6 +3,7 @@ import eslintPluginMarkdown from "@eslint/markdown";
 import eslintPluginJsonc from "eslint-plugin-jsonc";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import eslintPluginPromise from "eslint-plugin-promise";
+import eslintPluginSonarJs from "eslint-plugin-sonarjs";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
 import eslintPluginYml from "eslint-plugin-yml";
@@ -35,6 +36,15 @@ export default [
   {
     ...eslintPluginPrettier,
     files: patternJsFiles
+  },
+  {
+    files: patternJsFiles,
+    plugins: {
+      sonarjs: eslintPluginSonarJs
+    },
+    rules: {
+      ...eslintPluginSonarJs.configs.recommended.rules
+    }
   },
   {
     files: patternJsFiles,
