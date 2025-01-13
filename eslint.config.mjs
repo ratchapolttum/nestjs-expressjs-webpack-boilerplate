@@ -1,3 +1,4 @@
+import eslintPluginJavaScript from "@eslint/js";
 import eslintPluginMarkdown from "@eslint/markdown";
 
 import eslintPluginJsonc from "eslint-plugin-jsonc";
@@ -9,12 +10,45 @@ import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
 import eslintPluginYml from "eslint-plugin-yml";
 import globals from "globals";
 import jsoncESlintParser from "jsonc-eslint-parser";
+import typescriptEslint from "typescript-eslint";
 import yamlESlintParser from "yaml-eslint-parser";
 
 /**
  * @type {string[]}
  */
 const patternJsFiles = ["**/*.cjs", "**/*.js", "**/*.mjs"];
+
+/**
+ * @type {string[]}
+ */
+const patternTsFiles = ["**/*.ts"];
+
+/**
+ * @type {string[]}
+ */
+const patternFiles = [...patternJsFiles, ...patternTsFiles];
+
+const typeScriptRulesConfigurations = [...typescriptEslint.configs.recommended].map((config) => {
+  return {
+    ...config,
+    files: patternTsFiles,
+    plugins: typescriptEslint.plugin,
+    languageOptions: {
+      ...config.languageOptions,
+      parser: typescriptEslint.parser,
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname
+      },
+      ecmaVersion: 2022,
+      sourceType: "module"
+    },
+    rules: {
+      ...config.rules,
+      "@typescript-eslint/no-unused-vars": "off"
+    }
+  };
+});
 
 /**
  * Configuration for ESLint
@@ -35,10 +69,10 @@ export default [
   },
   {
     ...eslintPluginPrettier,
-    files: patternJsFiles
+    files: patternFiles
   },
   {
-    files: patternJsFiles,
+    files: patternFiles,
     plugins: {
       sonarjs: eslintPluginSonarJs
     },
@@ -47,7 +81,7 @@ export default [
     }
   },
   {
-    files: patternJsFiles,
+    files: patternFiles,
     plugins: {
       unicorn: eslintPluginUnicorn
     },
@@ -64,7 +98,7 @@ export default [
     }
   },
   {
-    files: patternJsFiles,
+    files: patternFiles,
     plugins: {
       promise: eslintPluginPromise
     },
@@ -86,7 +120,7 @@ export default [
     }
   },
   {
-    files: patternJsFiles,
+    files: patternFiles,
     plugins: {
       "unused-imports": eslintPluginUnusedImports
     },
@@ -103,6 +137,38 @@ export default [
       ]
     }
   },
+  {
+    files: patternFiles,
+    languageOptions: {
+      ecmaVersion: 2022
+    },
+    rules: {
+      ...eslintPluginJavaScript.configs.recommended.rules,
+      "array-callback-return": "error",
+      "constructor-super": "off",
+      "no-await-in-loop": "error",
+      "no-cond-assign": "off",
+      "no-const-assign": "off",
+      "no-constructor-return": "error",
+      "no-control-regex": "off",
+      "no-dupe-else-if": "off",
+      "no-duplicate-case": "off",
+      "no-duplicate-imports": "error",
+      "no-empty-character-class": "off",
+      "no-invalid-regexp": "off",
+      "no-misleading-character-class": "off",
+      "no-new-native-nonconstructor": "off",
+      "no-promise-executor-return": "error",
+      "no-self-compare": "error",
+      "no-template-curly-in-string": "error",
+      "no-this-before-super": "off",
+      "no-unmodified-loop-condition": "error",
+      "no-unreachable-loop": "error",
+      "no-unused-vars": "off",
+      "use-isnan": "off"
+    }
+  },
+  ...typeScriptRulesConfigurations,
   ...eslintPluginJsonc.configs["flat/recommended-with-jsonc"].map((config) => {
     return {
       ...config,
