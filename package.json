@@ -12,8 +12,8 @@
     "url": "https://github.com/ratchapolttum/nestjs-expressjs-webpack-boilerplate/issues"
   },
   "scripts": {
-    "lint": "eslint **/*.{cjs,js,json,json5,jsonc,jsonl,md,mjs,yaml,yml}",
-    "lint:fix": "eslint --fix **/*.{cjs,js,json,json5,jsonc,jsonl,md,mjs,yaml,yml}"
+    "lint": "eslint **/*.{cjs,js,json,json5,jsonc,jsonl,md,mjs,ts,yaml,yml}",
+    "lint:fix": "eslint --fix **/*.{cjs,js,json,json5,jsonc,jsonl,md,mjs,ts,yaml,yml}"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.4",
@@ -36,6 +36,7 @@
     "ts-node": "10.9.2",
     "tsconfig-paths": "4.2.0",
     "typescript": "5.6.3",
+    "typescript-eslint": "8.19.1",
     "yaml-eslint-parser": "1.2.3"
   },
   "private": true,
