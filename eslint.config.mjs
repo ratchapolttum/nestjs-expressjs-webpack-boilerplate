@@ -32,7 +32,6 @@ const typeScriptRulesConfigurations = [...typescriptEslint.configs.recommended].
   return {
     ...config,
     files: patternTsFiles,
-    plugins: typescriptEslint.plugin,
     languageOptions: {
       ...config.languageOptions,
       parser: typescriptEslint.parser,
