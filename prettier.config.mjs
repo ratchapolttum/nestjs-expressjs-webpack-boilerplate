@@ -1,9 +1,7 @@
 /**
- * Configuration for Prettier
- *
  * @type {import("prettier").Config}
  */
-export default {
+const configuration = {
   arrowParens: "always",
   bracketSpacing: true,
   embeddedLanguageFormatting: "auto",
@@ -16,3 +14,5 @@ export default {
   trailingComma: "none",
   useTabs: false
 };
+
+export default configuration;

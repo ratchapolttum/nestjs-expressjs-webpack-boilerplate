@@ -50,11 +50,9 @@ const typeScriptRulesConfigurations = [...typescriptEslint.configs.recommended].
 });
 
 /**
- * Configuration for ESLint
- *
  * @type {import("eslint").Linter.Config[]}
  */
-export default [
+const configuration = [
   {
     ignores: ["**/coverage/*", "**/dist/*", "**/node_modules/*", "**/package-lock.json"]
   },
@@ -246,3 +244,4 @@ export default [
     }
   }
 ];
+export default configuration;
