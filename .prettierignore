@@ -3,3 +3,6 @@ node_modules/*
 
 # - Compiled output directory
 dist/*
+
+# - Test directory
+coverage/*
