@@ -1,2 +1,5 @@
 # - Dependencies directories
 node_modules/*
+
+# - Compiled output directory
+dist/*
