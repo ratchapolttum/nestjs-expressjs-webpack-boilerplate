@@ -56,7 +56,7 @@ const typeScriptRulesConfigurations = [...typescriptEslint.configs.recommended].
  */
 export default [
   {
-    ignores: ["**/node_modules/*", "**/dist/*"]
+    ignores: ["**/coverage/*", "**/dist/*", "**/node_modules/*", "**/package-lock.json"]
   },
   {
     languageOptions: {
