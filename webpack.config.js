@@ -48,6 +48,10 @@ module.exports = function compile(initial) {
       new CopyWebpackPlugin({
         patterns: [
           {
+            from: "environments",
+            to: "environments"
+          },
+          {
             from: "resources",
             to: "resources"
           }
