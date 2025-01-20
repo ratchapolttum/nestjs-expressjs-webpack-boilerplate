@@ -16,7 +16,7 @@ class Application {
       const application: NestExpressApplication = await NestFactory.create(AppModule, new ExpressAdapter(express()));
 
       await application.init();
-      await application.listen(8080, "0.0.0.0");
+      await application.listen(environment.server.port, environment.server.hostname);
 
       this.logger.log(`Running in ${environment.profile} mode`);
       this.logger.log(`Listening on ${await application.getUrl()}`);

@@ -10,5 +10,9 @@ const output: dotenv.DotenvConfigOutput = dotenv.config({
 });
 
 export const environment: Environment = {
-  profile: output.parsed?.NESTJS_PROFILE
+  profile: output.parsed?.NESTJS_PROFILE,
+  server: {
+    port: Number.parseInt(output.parsed?.SERVER_PORT, 10),
+    hostname: output.parsed?.SERVER_HOSTNAME
+  }
 };
