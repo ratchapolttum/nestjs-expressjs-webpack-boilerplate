@@ -1,4 +1,5 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const DotenvWebpackPlugin = require("dotenv-webpack");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 
 const path = require("node:path");
@@ -56,6 +57,10 @@ module.exports = function compile(initial) {
             to: "resources"
           }
         ]
+      }),
+      new DotenvWebpackPlugin({
+        systemvars: true,
+        silent: true
       })
     ]
   };
