@@ -6,7 +6,7 @@ node_modules/*
 .vscode/*
 !.vscode/extensions.json
 !.vscode/launch.json
-!.vscode/settings
+!.vscode/settings.json
 !.vscode/tasks.json
 
 # -- JetBrains
