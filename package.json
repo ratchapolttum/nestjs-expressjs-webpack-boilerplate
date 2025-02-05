@@ -9,6 +9,11 @@
   },
   "bugs": "https://github.com/ratchapolttum/nestjs-expressjs-webpack-boilerplate/issues",
   "license": "MIT",
+  "scripts": {
+    "build": "nest build",
+    "start": "nest start --watch",
+    "start:debug": "nest start --debug --watch"
+  },
   "dependencies": {
     "@nestjs/common": "11.0.7",
     "@nestjs/core": "11.0.7",
