@@ -4,6 +4,10 @@ node_modules/*
 # - Compiled output directory
 dist/*
 
+# - Test directory
+# -- Jest
+coverage/*
+
 # - Text editor and IDE directories and files
 # -- Visual Studio Code
 .vscode/*
