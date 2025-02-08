@@ -10,6 +10,9 @@
   "bugs": "https://github.com/ratchapolttum/nestjs-expressjs-webpack-boilerplate/issues",
   "license": "MIT",
   "scripts": {
+    "postinstall": "husky",
+    "git:pre-commit": "lint-staged",
+    "git:pre-push": "npm run test:unit",
     "lint": "eslint **/*.{cjs,js,json,json5,jsonc,jsonl,md,mjs,ts,yaml,yml}",
     "lint:fix": "eslint --fix **/*.{cjs,js,json,json5,jsonc,jsonl,md,mjs,ts,yaml,yml}",
     "build": "cross-env NODE_ENV=development nest build",
