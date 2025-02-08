@@ -25,4 +25,4 @@ class Application {
   }
 }
 
-Application.run();
+void Application.run();
