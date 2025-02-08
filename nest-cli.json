@@ -6,6 +6,7 @@
   "sourceRoot": "src",
   "entryFile": "main",
   "compilerOptions": {
+    "builder": "webpack",
     "deleteOutDir": true
   }
 }
