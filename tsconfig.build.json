@@ -5,6 +5,7 @@
     "**/e2e/**/*",
     "**/node_modules/**/*",
     "**/*spec.ts",
+    "**/commitlint.config.ts",
     "**/jest.config.ts"
   ]
 }
