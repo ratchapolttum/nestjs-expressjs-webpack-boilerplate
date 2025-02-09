@@ -1,3 +1,5 @@
+import { environment } from "@environment";
+
 import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { ExpressAdapter, NestExpressApplication } from "@nestjs/platform-express";
@@ -12,8 +14,10 @@ class Application {
       const application: NestExpressApplication = await NestFactory.create(AppModule, new ExpressAdapter());
 
       await application.init();
-      await application.listen(8080, "0.0.0.0");
+      await application.listen(environment.server.port, environment.server.hostname);
 
+      this._logger.log(`Running in ${environment.profile} mode`);
+      this._logger.log(`Listening on ${await application.getUrl()}`);
       this._logger.log("Application started successfully");
     } catch (error) {
       if (error instanceof Error) {
