@@ -4,6 +4,8 @@ import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { ExpressAdapter, NestExpressApplication } from "@nestjs/platform-express";
 
+import { OpenApi } from "./open-api";
+
 import { AppModule } from "./app/app.module";
 
 class Application {
@@ -12,6 +14,10 @@ class Application {
   public static async run(): Promise<void> {
     try {
       const application: NestExpressApplication = await NestFactory.create(AppModule, new ExpressAdapter());
+
+      if (["development", "staging"].includes(environment.profile)) {
+        new OpenApi(application).run();
+      }
 
       await application.init();
       await application.listen(environment.server.port, environment.server.hostname);
