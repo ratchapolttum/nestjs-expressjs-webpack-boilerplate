@@ -4,7 +4,12 @@ import { Module, OnModuleInit } from "@nestjs/common";
 
 import { ValidationResult } from "joi";
 
-@Module({})
+import { CorsPolicyService } from "./services";
+
+@Module({
+  providers: [CorsPolicyService],
+  exports: [CorsPolicyService]
+})
 export class CoreModule implements OnModuleInit {
   private validEnvironment(): void {
     const { error }: ValidationResult<EnvironmentSchema> = environmentValidation.validate(environment);

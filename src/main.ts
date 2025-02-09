@@ -1,3 +1,4 @@
+import { CorsPolicyService } from "@core";
 import { environment } from "@environment";
 
 import { Logger } from "@nestjs/common";
@@ -14,6 +15,8 @@ class Application {
   public static async run(): Promise<void> {
     try {
       const application: NestExpressApplication = await NestFactory.create(AppModule, new ExpressAdapter());
+
+      application.enableCors(application.get(CorsPolicyService).configuration());
 
       if (["development", "staging"].includes(environment.profile)) {
         new OpenApi(application).run();
