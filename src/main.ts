@@ -5,6 +5,8 @@ import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { ExpressAdapter, NestExpressApplication } from "@nestjs/platform-express";
 
+import { useContainer } from "class-validator";
+
 import { OpenApi } from "./open-api";
 
 import { AppModule } from "./app/app.module";
@@ -15,6 +17,8 @@ class Application {
   public static async run(): Promise<void> {
     try {
       const application: NestExpressApplication = await NestFactory.create(AppModule, new ExpressAdapter());
+
+      useContainer(application.select(AppModule), { fallbackOnErrors: true });
 
       application.enableCors(application.get(CorsPolicyService).configuration());
 
