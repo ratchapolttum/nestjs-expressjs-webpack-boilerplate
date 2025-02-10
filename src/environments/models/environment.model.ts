@@ -7,10 +7,10 @@ import { EnvironmentServer, EnvironmentServerSchema } from "./environment-server
 import { OnlyData, OnlySchema } from "../types";
 
 class EnvironmentModel {
-  public readonly profile?: string | Joi.StringSchema;
-  public readonly application?: EnvironmentApplication | Joi.ObjectSchema<EnvironmentApplicationSchema>;
-  public readonly server?: EnvironmentServer | Joi.ObjectSchema<EnvironmentServerSchema>;
-  public readonly security?: EnvironmentSecurity | Joi.ObjectSchema<EnvironmentSecuritySchema>;
+  public readonly profile: string | Joi.StringSchema;
+  public readonly application: EnvironmentApplication | Joi.ObjectSchema<EnvironmentApplicationSchema>;
+  public readonly server: EnvironmentServer | Joi.ObjectSchema<EnvironmentServerSchema>;
+  public readonly security: EnvironmentSecurity | Joi.ObjectSchema<EnvironmentSecuritySchema>;
 }
 
 export type Environment = OnlyData<EnvironmentModel>;

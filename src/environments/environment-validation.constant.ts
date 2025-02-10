@@ -3,6 +3,7 @@ import * as Joi from "joi";
 import {
   EnvironmentApplicationSchema,
   EnvironmentSchema,
+  EnvironmentSecurityCookieSchema,
   EnvironmentSecurityCorsSchema,
   EnvironmentSecuritySchema,
   EnvironmentServerSchema
@@ -24,6 +25,9 @@ export const environmentValidation: Joi.ObjectSchema<EnvironmentSchema> = Joi.ob
       allowedHeaders: Joi.array<string[]>().items(Joi.string()).required(),
       exposedHeaders: Joi.array<string[]>().items(Joi.string()).required(),
       maxAge: Joi.number().integer().min(1).required()
+    }).required(),
+    cookie: Joi.object<EnvironmentSecurityCookieSchema>({
+      secret: Joi.string().length(32).required()
     }).required()
   }).required()
 }).required();
