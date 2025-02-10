@@ -4,7 +4,7 @@ import { MiddlewareConsumer, Module, NestModule, OnModuleInit, RequestMethod } f
 
 import { ValidationResult } from "joi";
 
-import { CookieMiddleware } from "./middlewares";
+import { CookieMiddleware, HelmetMiddleware } from "./middlewares";
 import { CorsPolicyService } from "./services";
 
 @Module({
@@ -21,7 +21,7 @@ export class CoreModule implements NestModule, OnModuleInit {
   }
 
   public configure(consumer: MiddlewareConsumer): void {
-    consumer.apply(CookieMiddleware).forRoutes({ path: "*", method: RequestMethod.ALL });
+    consumer.apply(CookieMiddleware, HelmetMiddleware).forRoutes({ path: "*", method: RequestMethod.ALL });
   }
 
   public onModuleInit(): void {
