@@ -26,6 +26,8 @@ class Application {
         new OpenApi(application).run();
       }
 
+      application.disable("x-powered-by");
+
       await application.init();
       await application.listen(environment.server.port, environment.server.hostname);
 
