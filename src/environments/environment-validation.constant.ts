@@ -6,6 +6,8 @@ import {
   EnvironmentSecurityCookieSchema,
   EnvironmentSecurityCorsSchema,
   EnvironmentSecuritySchema,
+  EnvironmentSecurityThrottlersSchema,
+  EnvironmentSecurityThrottlersValueSchema,
   EnvironmentServerSchema
 } from "./models";
 
@@ -28,6 +30,12 @@ export const environmentValidation: Joi.ObjectSchema<EnvironmentSchema> = Joi.ob
     }).required(),
     cookie: Joi.object<EnvironmentSecurityCookieSchema>({
       secret: Joi.string().length(32).required()
+    }).required(),
+    throttlers: Joi.object<EnvironmentSecurityThrottlersSchema>({
+      default: Joi.object<EnvironmentSecurityThrottlersValueSchema>({
+        ttl: Joi.number().integer().min(1).required(),
+        limit: Joi.number().integer().min(1).required()
+      }).required()
     }).required()
   }).required()
 }).required();

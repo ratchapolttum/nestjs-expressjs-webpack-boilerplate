@@ -23,6 +23,12 @@ export const environment: Environment = {
     },
     cookie: {
       secret: process.env.SECURITY_COOKIE_SECRET
+    },
+    throttlers: {
+      default: {
+        ttl: Number.parseInt(process.env.SECURITY_THROTTLERS_DEFAULT_TTL, 10),
+        limit: Number.parseInt(process.env.SECURITY_THROTTLERS_DEFAULT_LIMIT, 10)
+      }
     }
   }
 };

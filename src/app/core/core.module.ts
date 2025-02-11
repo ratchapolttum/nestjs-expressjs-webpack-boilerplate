@@ -1,6 +1,15 @@
 import { environment, EnvironmentSchema, environmentValidation } from "@environment";
 
-import { MiddlewareConsumer, Module, NestModule, OnModuleInit, RequestMethod } from "@nestjs/common";
+import {
+  ClassSerializerInterceptor,
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  OnModuleInit,
+  RequestMethod
+} from "@nestjs/common";
+import { APP_GUARD, APP_INTERCEPTOR } from "@nestjs/core";
+import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 
 import { ValidationResult } from "joi";
 
@@ -8,7 +17,27 @@ import { CookieMiddleware, HelmetMiddleware, ResponseTimeMiddleware } from "./mi
 import { CorsPolicyService } from "./services";
 
 @Module({
-  providers: [CorsPolicyService],
+  imports: [
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          ttl: environment.security.throttlers.default.ttl,
+          limit: environment.security.throttlers.default.limit
+        }
+      ]
+    })
+  ],
+  providers: [
+    CorsPolicyService,
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ClassSerializerInterceptor
+    }
+  ],
   exports: [CorsPolicyService]
 })
 export class CoreModule implements NestModule, OnModuleInit {
